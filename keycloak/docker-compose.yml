@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.9"
 services:
   keycloak:
     image: quay.io/keycloak/keycloak:${KC_VERSION}
@@ -22,6 +22,7 @@ services:
         condition: service_healthy
     networks:
       - keycloak_networks
+      - 7_hallo
 
   postgres_keycloak:
     image: postgres:${POSTGRES_VERSION}
@@ -40,6 +41,7 @@ services:
 #      - ./data/data_postgres_keycloak:/var/lib/postgresql/data
     networks:
       - keycloak_networks
+      - 7_hallo
 
 volumes:
   keycloak:
@@ -48,3 +50,7 @@ volumes:
 networks:
   keycloak_networks:
     driver: bridge
+  7_hallo:
+    driver: bridge
+    external: true
+

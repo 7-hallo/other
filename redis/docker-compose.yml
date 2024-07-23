@@ -1,1 +1,36 @@
-// docker reddit
+version: "3.9"
+services:
+  redis:
+    image: redis:${REDIS_VERSION}
+    container_name: redis
+    restart: always
+    volumes:
+      - redis_volume_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - redis_networks
+      - 7_hallo
+
+  redis_insight:
+    image: redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
+    container_name: redis_insight
+    restart: always
+    ports:
+      - "5540:5540"
+    volumes:
+      - redis_insight_volume_data:/db
+    networks:
+      - redis_networks
+      - 7_hallo
+
+volumes:
+  redis_volume_data:
+  redis_insight_volume_data:
+
+networks:
+  redis_networks:
+    driver: bridge
+  7_hallo:
+    driver: bridge
+    external: true
