@@ -34,6 +34,8 @@ services:
       - "5432:5432"
     healthcheck:
       test: "exit 0"
+#    volumes:
+#      - postgres_keycloak:/var/lib/postgresql/data
     volumes:
       - ./data/data_postgres_keycloak:/var/lib/postgresql/data
     networks:
@@ -41,7 +43,7 @@ services:
 
 volumes:
   keycloak:
-  data_postgres_keycloak:
+  postgres_keycloak:
 
 networks:
   keycloak_networks:
