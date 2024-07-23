@@ -35,7 +35,7 @@ services:
     healthcheck:
       test: "exit 0"
     volumes:
-      - data_postgres_keycloak:/var/lib/postgresql/data
+      - ./data/data_postgres_keycloak:/var/lib/postgresql/data
     networks:
       - keycloak_networks
 
