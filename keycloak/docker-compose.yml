@@ -16,23 +16,30 @@ services:
     ports:
       - "8080:8080"
     depends_on:
-      - keycloak_db
+      - db
     networks:
       - keycloak_networks
+    volumes:
+      - keycloak:/opt/keycloak/data/
 
-  keycloak_db:
+  db:
     image: postgres:${POSTGRES_VERSION}
+    container_name: keycloak_db
     environment:
       - POSTGRES_DB=keycloak
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=keycloak
+#    volumes:
+#      - ./data/keycloak_db:/var/lib/postgresql/data
     volumes:
-      - keycloak_db:/var/lib/postgresql/data
+      - db:/var/lib/postgresql/data
     networks:
       - keycloak_networks
 
 volumes:
-  keycloak_db:
+  keycloak:
+  db:
+
 networks:
   keycloak_networks:
     driver: bridge
