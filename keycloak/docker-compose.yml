@@ -8,37 +8,40 @@ services:
       - KEYCLOAK_ADMIN=admin
       - KEYCLOAK_ADMIN_PASSWORD=admin
 
-      - DB_VENDOR=POSTGRES
-      - DB_ADDR=db_keycloak
-      - DB_DATABASE=keycloak
-      - DB_USER=keycloak
-      - DB_PASSWORD=keycloak
+      - KC_DB=postgres
+      - KC_DB_URL_HOST=postgres_keycloak
+      - KC_DB_DATABASE=keycloak
+      - KC_DB_SCHEMA=public
+
+      - KC_DB_USER=keycloak
+      - KC_DB_PASSWORD=keycloak
     ports:
       - "8080:8080"
     depends_on:
-      - db
+      postgres_keycloak:
+        condition: service_healthy
     networks:
       - keycloak_networks
-    volumes:
-      - keycloak:/opt/keycloak/data/
 
-  db:
+  postgres_keycloak:
     image: postgres:${POSTGRES_VERSION}
     container_name: keycloak_db
     environment:
       - POSTGRES_DB=keycloak
       - POSTGRES_USER=keycloak
       - POSTGRES_PASSWORD=keycloak
-#    volumes:
-#      - ./data/keycloak_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: "exit 0"
     volumes:
-      - db:/var/lib/postgresql/data
+      - data_postgres_keycloak:/var/lib/postgresql/data
     networks:
       - keycloak_networks
 
 volumes:
   keycloak:
-  db:
+  data_postgres_keycloak:
 
 networks:
   keycloak_networks:
