@@ -8,5 +8,6 @@ fi
 # Chạy Docker Compose cho cả hai file
 docker-compose -f keycloak/docker-compose.yml up -d
 docker-compose -f redis/docker-compose.yml up -d
+docker-compose -f postgres/docker-compose.yml up -d
 
 echo 'Started!'
