@@ -1,0 +1,21 @@
+version: "3.9"
+services:
+  nexus:
+    image: sonatype/nexus3:${NEXUS_VERSION}
+    container_name: nexus
+    restart: always
+    environment:
+      - POSTGRES_USER=nexus
+      - POSTGRES_PASSWORD=nexus
+    ports:
+      - "8081:8081"
+    volumes:
+      - nexus-data:/nexus-data
+
+volumes:
+  nexus-data:
+
+networks:
+  7_hallo:
+    driver: bridge
+    external: true
