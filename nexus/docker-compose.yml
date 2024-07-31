@@ -16,6 +16,6 @@ volumes:
   nexus-data:
 
 networks:
-  7_hallo:
+  sevenhallo:
     driver: bridge
     external: true

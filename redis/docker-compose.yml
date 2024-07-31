@@ -10,7 +10,7 @@ services:
       - "6379:6379"
     networks:
       - redis_networks
-      - 7_hallo
+      - sevenhallo
 
   redis_insight:
     image: redislabs/redisinsight:${REDIS_INSIGHT_VERSION}
@@ -22,7 +22,7 @@ services:
       - redis_insight_volume_data:/db
     networks:
       - redis_networks
-      - 7_hallo
+      - sevenhallo
 
 volumes:
   redis_volume_data:
@@ -31,6 +31,6 @@ volumes:
 networks:
   redis_networks:
     driver: bridge
-  7_hallo:
+  sevenhallo:
     driver: bridge
     external: true
