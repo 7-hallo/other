@@ -6,11 +6,13 @@ services:
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-      - POSTGRES_DB=sevenhallo
     ports:
-      - "54322:5432"
+      - "5432:5432"
     volumes:
       - db:/var/lib/postgresql/data
+      - ./init-databases.sql:/docker-entrypoint-initdb.d/init-databases.sql
+    networks:
+      sevenhallo:
 
 volumes:
   db:
@@ -19,4 +21,3 @@ volumes:
 networks:
   sevenhallo:
     driver: bridge
-    external: true
