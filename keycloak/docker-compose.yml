@@ -13,8 +13,8 @@ services:
       - KC_DB_DATABASE=keycloak
       - KC_DB_SCHEMA=public
 
-      - KC_DB_USER=keycloak
-      - KC_DB_PASSWORD=keycloak
+      - KC_DB_USER=postgres
+      - KC_DB_PASSWORD=postgres
     ports:
       - "8080:8080"
     depends_on:
@@ -30,8 +30,8 @@ services:
     container_name: keycloak_db
     environment:
       - POSTGRES_DB=keycloak
-      - POSTGRES_USER=keycloak
-      - POSTGRES_PASSWORD=keycloak
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - "5432:5432"
     healthcheck:
