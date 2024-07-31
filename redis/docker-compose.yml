@@ -8,7 +8,6 @@ services:
     ports:
       - "6379:6379"
     networks:
-      - redis_networks
       - sevenhallo
 
   redis_insight:
@@ -20,7 +19,6 @@ services:
     volumes:
       - redis_insight_volume_data:/db
     networks:
-      - redis_networks
       - sevenhallo
 
 volumes:
@@ -28,8 +26,6 @@ volumes:
   redis_insight_volume_data:
 
 networks:
-  redis_networks:
-    driver: bridge
   sevenhallo:
     driver: bridge
     external: true
