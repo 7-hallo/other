@@ -24,3 +24,4 @@ fi
 # Create Multiple Postgresql Databases
 # Source: https://github.com/MartinKaburu/docker-postgresql-multiple-databases,
 #         https://github.com/boskomijin/postgres-multiple-databases-creation
+# Note: This file requires EOL = LF
